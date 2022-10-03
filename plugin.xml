@@ -19,42 +19,42 @@
     </engines>
 
 
-	<platform name="android">
-		<config-file target="res/xml/config.xml" parent="/*">
-			<feature name="EstimoteBeacons" >
-				<param name="android-package" value="com.evothings.EstimoteBeacons"/>
-			</feature>
-		</config-file>
-		<config-file target="AndroidManifest.xml" parent="/manifest">
-			<uses-permission android:name="android.permission.BLUETOOTH" />
-			<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-		</config-file> 
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="EstimoteBeacons">
+                <param name="android-package" value="com.evothings.EstimoteBeacons"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+        </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-			<service android:name="com.evothings.BeaconsMonitoringService" android:label="Beacons Monitoring Service" />
-        	<receiver android:name="com.evothings.BluetoothStateReceiver" android:enabled="true">
-            	<intent-filter>
-                	<action android:name="android.bluetooth.adapter.action.STATE_CHANGED"/>
-            	</intent-filter>
-        	</receiver>
-		</config-file>
+            <service android:name="com.evothings.BeaconsMonitoringService" android:label="Beacons Monitoring Service" />
+            <receiver android:name="com.evothings.BluetoothStateReceiver" android:enabled="true" android:exported="false">
+                <intent-filter>
+                    <action android:name="android.bluetooth.adapter.action.STATE_CHANGED"/>
+                </intent-filter>
+            </receiver>
+        </config-file>
 
-		<source-file src="plugin/src/android/EstimoteBeacons.java" target-dir="src/com/evothings" />
-		<source-file src="plugin/src/android/BeaconsMonitoringService.java" target-dir="src/com/evothings" />
-		<source-file src="plugin/src/android/BluetoothStateReceiver.java" target-dir="src/com/evothings" />
-		<source-file src="plugin/src/android/JSONUtils.java" target-dir="src/com/evothings" />
-		<source-file src="plugin/src/android/LocalStorage.java" target-dir="src/com/evothings" />
-		<source-file src="plugin/src/android/LocalStorageDBHelper.java" target-dir="src/com/evothings" />
-		<source-file src="plugin/src/android/NotificationRegion.java" target-dir="src/com/evothings" />
-		<source-file src="plugin/src/android/RegionsStore.java" target-dir="src/com/evothings" />
-		<source-file src="plugin/src/android/History.java" target-dir="src/com/evothings" />
-		<source-file src="plugin/src/android/HistoryStore.java" target-dir="src/com/evothings" />
+        <source-file src="plugin/src/android/EstimoteBeacons.java" target-dir="src/com/evothings" />
+        <source-file src="plugin/src/android/BeaconsMonitoringService.java" target-dir="src/com/evothings" />
+        <source-file src="plugin/src/android/BluetoothStateReceiver.java" target-dir="src/com/evothings" />
+        <source-file src="plugin/src/android/JSONUtils.java" target-dir="src/com/evothings" />
+        <source-file src="plugin/src/android/LocalStorage.java" target-dir="src/com/evothings" />
+        <source-file src="plugin/src/android/LocalStorageDBHelper.java" target-dir="src/com/evothings" />
+        <source-file src="plugin/src/android/NotificationRegion.java" target-dir="src/com/evothings" />
+        <source-file src="plugin/src/android/RegionsStore.java" target-dir="src/com/evothings" />
+        <source-file src="plugin/src/android/History.java" target-dir="src/com/evothings" />
+        <source-file src="plugin/src/android/HistoryStore.java" target-dir="src/com/evothings" />
 
+        <lib-file src="libs/estimote-sdk.aar"/>
         <framework src="plugin/src/android/estimotesdk.gradle" custom="true" type="gradleReference" />
-        <resource-file src="libs/estimote-sdk.aar" target="libs/estimote-sdk.aar"/>
-        
-	</platform>
+
+    </platform>
 
 	<platform name="ios">
 		<framework src="CoreBluetooth.framework" />
