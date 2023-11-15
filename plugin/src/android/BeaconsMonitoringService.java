@@ -294,14 +294,14 @@ public class BeaconsMonitoringService extends Service {
 
         int requestCode = new Random().nextInt();
 
+        int intentFlagType = PendingIntent.FLAG_UPDATE_CURRENT;
+        
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-
-               PendingIntent pendingIntent = PendingIntent.getActivity(context, requestCode, notifyIntent, PendingIntent.FLAG_IMMUTABLE);
+            intentFlagType = PendingIntent.FLAG_IMMUTABLE;  // or only use FLAG_MUTABLE >> if it needs to be used with inline replies or bubbles.
             }
-        else
-            {
-                PendingIntent pendingIntent = PendingIntent.getActivity(context, requestCode, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            }
+        
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, requestCode, notifyIntent, intentFlagType);
+           
 
         // Set message depending entering or exit...
         Notification notification = new Notification.Builder(BeaconsMonitoringService.this)
