@@ -294,7 +294,7 @@ public class BeaconsMonitoringService extends Service {
 
         int requestCode = new Random().nextInt();
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, requestCode, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, requestCode, notifyIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Set message depending entering or exit...
         Notification notification = new Notification.Builder(BeaconsMonitoringService.this)
