@@ -297,7 +297,7 @@ public class BeaconsMonitoringService extends Service {
         int intentFlagType = PendingIntent.FLAG_UPDATE_CURRENT;
         
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            intentFlagType = PendingIntent.FLAG_IMMUTABLE;  // or only use FLAG_MUTABLE >> if it needs to be used with inline replies or bubbles.
+            intentFlagType = PendingIntent.FLAG_MUTABLE;  // or only use FLAG_MUTABLE >> if it needs to be used with inline replies or bubbles.
             }
         
         PendingIntent pendingIntent = PendingIntent.getActivity(context, requestCode, notifyIntent, intentFlagType);
