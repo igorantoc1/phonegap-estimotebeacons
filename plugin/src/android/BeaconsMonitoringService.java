@@ -52,7 +52,7 @@ public class BeaconsMonitoringService extends Service {
     public static final String NOTIFICATION_TAG = "OutSystemsBeaconNotifications";
     private static final String TAG = BeaconsMonitoringService.class.getSimpleName();
 
-    public static final int PENDING_INTENT_FLAG_MUTABLE = Build.VERSION.CODENAME.equals("S") ? 0x02000000 : 0;
+    public static final int PENDING_INTENT_FLAG_MUTABLE = (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) ? 0x02000000 : 0; android.os.Build.VERSION_CODES.S
     /**
      * Messenger to handle incoming messages from clients
      */
