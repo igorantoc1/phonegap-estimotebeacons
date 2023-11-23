@@ -51,6 +51,8 @@ public class BeaconsMonitoringService extends Service {
     public static final int MSG_UNREGISTER_CLIENT = 6;
     public static final String NOTIFICATION_TAG = "OutSystemsBeaconNotifications";
     private static final String TAG = BeaconsMonitoringService.class.getSimpleName();
+
+    public static final int PENDING_INTENT_FLAG_MUTABLE = Build.VERSION.CODENAME.equals("S") ? 0x02000000 : 0;
     /**
      * Messenger to handle incoming messages from clients
      */
@@ -62,6 +64,7 @@ public class BeaconsMonitoringService extends Service {
     /**
      * Wheter this service is bound to any activity
      */
+    
     private boolean mIsBound;
     private RegionsStore mRegionsStore = null;
     private HistoryStore mHistoryStore = null;
@@ -297,7 +300,7 @@ public class BeaconsMonitoringService extends Service {
         int intentFlagType = PendingIntent.FLAG_UPDATE_CURRENT;
         
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            intentFlagType = PendingIntent.FLAG_MUTABLE;  // or only use FLAG_MUTABLE >> if it needs to be used with inline replies or bubbles.
+            intentFlagType = PENDING_INTENT_FLAG_MUTABLE;  // or only use FLAG_MUTABLE >> if it needs to be used with inline replies or bubbles.
             }
         
         PendingIntent pendingIntent = PendingIntent.getActivity(context, requestCode, notifyIntent, intentFlagType);
