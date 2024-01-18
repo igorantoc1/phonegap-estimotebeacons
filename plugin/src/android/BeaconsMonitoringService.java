@@ -294,8 +294,15 @@ public class BeaconsMonitoringService extends Service {
         mRegionsStore.setRegion(notificationRegion);
 
         int requestCode = new Random().nextInt();
-        
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, requestCode, notifyIntent,  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE );           
+
+        int intentFlagType = PendingIntent.FLAG_UPDATE_CURRENT;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            intentFlagType = PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE;  
+           } // or only use FLAG_MUTABLE >> if it needs to be used with inline replies or bubbles.	     
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, requestCode, notifyIntent, intentFlagType);
+                 
 
         // Set message depending entering or exit...
         Notification notification = new Notification.Builder(BeaconsMonitoringService.this)
